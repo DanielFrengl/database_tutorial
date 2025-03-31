@@ -2,6 +2,8 @@
 
 import { useAuth } from "@/context/AuthContext";
 import { useState, useEffect } from "react";
+import { FaUser } from "react-icons/fa";
+import Dropdown from "./ui/DropdownNav";
 
 export default function AuthPopup() {
   const { user, loading } = useAuth();
@@ -10,10 +12,14 @@ export default function AuthPopup() {
   if (loading || !show) return null;
 
   return (
-    <div className="fixed top-5 right-5 bg-white shadow-md p-4 rounded-md border border-gray-300">
-      <p className="text-sm font-medium text-black">
-        {user ? `✅ Logged in as ${user.email}` : "❌ Not logged in"}
-      </p>
-    </div>
+    <>
+      {user ? (
+        <Dropdown />
+      ) : (
+        <a href="/auth" className="p-2 rounded-md bg-black text-white">
+          Login
+        </a>
+      )}
+    </>
   );
 }
