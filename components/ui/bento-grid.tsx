@@ -19,18 +19,22 @@ export const BentoGrid = ({
   );
 };
 
+const imagePath = "";
+
 export const BentoGridItem = ({
   className,
   title,
   description,
   header,
   icon,
+  img,
 }: {
   className?: string;
   title?: string | React.ReactNode;
   description?: string | React.ReactNode;
   header?: React.ReactNode;
   icon?: React.ReactNode;
+  img?: string;
 }) => {
   return (
     <div
@@ -39,9 +43,8 @@ export const BentoGridItem = ({
         className
       )}
     >
-      {header}
       <div className="transition duration-200 group-hover/bento:translate-x-2">
-        {icon}
+        <img src={`apps/${img}`} />
         <div className="mt-2 mb-2 font-sans font-bold text-neutral-600 dark:text-neutral-200">
           {title}
         </div>
