@@ -1,10 +1,13 @@
 "use client";
 
 import React, { useState } from "react";
+import { AppsBentoGrid } from "../applist/action";
 
 export default function AddAppPage() {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
+  const [desc, setDesc] = useState("");
+  const [img_dir, setImg_dir] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
 
@@ -26,6 +29,8 @@ export default function AddAppPage() {
     if (response.ok) {
       setName("");
       setUrl("");
+      setImg_dir("");
+      setDesc("");
     }
   };
 
@@ -37,7 +42,7 @@ export default function AddAppPage() {
             ADD A NEW APP
           </h1>
           <form onSubmit={handleSubmit} className="flex flex-col">
-            <div className="flex flex-col mb-3">
+            <div className="flex flex-col mb-4">
               <label htmlFor="name" className="text-white">
                 Enter the app name:
               </label>
@@ -50,7 +55,20 @@ export default function AddAppPage() {
                 required
               />
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col mb-4">
+              <label htmlFor="desc" className="text-white">
+                Enter the description:
+              </label>
+              <input
+                id="desc"
+                type="text"
+                value={desc}
+                onChange={(e) => setDesc(e.target.value)}
+                className="text-black border rounded bg-white text-center p-2"
+                required
+              />
+            </div>
+            <div className="flex flex-col mb-4  ">
               <label htmlFor="url" className="text-white">
                 Enter the URL:
               </label>
@@ -59,6 +77,19 @@ export default function AddAppPage() {
                 type="text"
                 value={url}
                 onChange={(e) => setUrl(e.target.value)}
+                className="text-black border rounded bg-white text-center p-2"
+                required
+              />
+            </div>
+            <div className="flex flex-col mb-4">
+              <label htmlFor="url" className="text-white">
+                Enter the dir_URL:
+              </label>
+              <input
+                id="img_dir"
+                type="text"
+                value={img_dir}
+                onChange={(e) => setImg_dir(e.target.value)}
                 className="text-black border rounded bg-white text-center p-2"
                 required
               />
@@ -73,6 +104,13 @@ export default function AddAppPage() {
           </form>
           {message && <p className="text-white mt-3">{message}</p>}
         </div>
+      </div>
+
+      <div>
+        <div>
+          <h1 className="heading font-bold text-5xl my-10">Apps</h1>
+        </div>
+        <AppsBentoGrid />
       </div>
     </div>
   );
